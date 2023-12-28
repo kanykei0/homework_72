@@ -13,7 +13,7 @@ const Toolbar: React.FC = () => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/" className="nav-link">
+            <NavLink to="/new-pizza" className="nav-link">
               New pizza
             </NavLink>
           </li>
