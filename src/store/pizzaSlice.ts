@@ -1,10 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { createPizza, fetchOnePizza, updatePizza } from "./pizzaThunk";
+import {
+  createPizza,
+  fetchAllPizza,
+  fetchOnePizza,
+  updatePizza,
+} from "./pizzaThunk";
 import { RootState } from "../app/store";
-import { PizzaApi } from "../types";
+import { PizzaApi, PizzaProps } from "../types";
 
 interface PizzaState {
   pizza: PizzaApi | null;
+  pizzas: PizzaProps[];
+  fetchLoading: boolean;
   createLoading: boolean;
   onePizzaLoading: boolean;
   updateLoading: boolean;
@@ -12,6 +19,8 @@ interface PizzaState {
 
 const initialState: PizzaState = {
   pizza: null,
+  pizzas: [],
+  fetchLoading: false,
   createLoading: false,
   onePizzaLoading: false,
   updateLoading: false,
@@ -53,15 +62,28 @@ export const pizzaSlice = createSlice({
     builder.addCase(updatePizza.rejected, (state) => {
       state.updateLoading = false;
     });
+    builder.addCase(fetchAllPizza.pending, (state) => {
+      state.fetchLoading = false;
+    });
+    builder.addCase(fetchAllPizza.fulfilled, (state, { payload: pizzas }) => {
+      state.fetchLoading = false;
+      state.pizzas = pizzas;
+    });
+    builder.addCase(fetchAllPizza.rejected, (state) => {
+      state.fetchLoading = false;
+    });
   },
 });
 
 export const pizzaReducer = pizzaSlice.reducer;
 
 export const selectPizza = (state: RootState) => state.pizza.pizza;
+export const selectAllPizza = (state: RootState) => state.pizza.pizzas;
 export const selectCreateLoading = (state: RootState) =>
   state.pizza.createLoading;
 export const selectOnePizzaLoading = (state: RootState) =>
   state.pizza.onePizzaLoading;
 export const selectUpdatePizzaLoading = (state: RootState) =>
   state.pizza.updateLoading;
+export const selectFetchAllPizzaLoading = (state: RootState) =>
+  state.pizza.fetchLoading;

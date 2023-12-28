@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { PizzaApi, UpdatePizza } from "../types";
+import { PizzaApi, PizzaList, PizzaProps, UpdatePizza } from "../types";
 import axiosApi from "../axiosApi";
+import { AppDispatch } from "../app/store";
 
 export const createPizza = createAsyncThunk<void, PizzaApi>(
   "pizza/create",
@@ -29,3 +30,26 @@ export const updatePizza = createAsyncThunk<void, UpdatePizza>(
     await axiosApi.put(`pizza/${id}.json`, pizza);
   }
 );
+
+export const fetchAllPizza = createAsyncThunk<
+  PizzaProps[],
+  undefined,
+  { dispatch: AppDispatch }
+>("piiza/allPizza", async (_) => {
+  const pizzaResponse = await axiosApi.get<PizzaList | null>("pizza.json");
+  const pizza = pizzaResponse.data;
+
+  let newPizza: PizzaProps[] = [];
+
+  if (pizza) {
+    newPizza = Object.keys(pizza).map((key) => {
+      const pizzas = pizza[key];
+      return {
+        ...pizzas,
+        id: key,
+      };
+    });
+  }
+
+  return newPizza;
+});

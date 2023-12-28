@@ -17,3 +17,7 @@ export interface UpdatePizza {
   id: string;
   pizza: PizzaApi;
 }
+
+export interface PizzaList {
+  [id: string]: PizzaApi;
+}
