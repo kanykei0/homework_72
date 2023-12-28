@@ -12,3 +12,8 @@ export interface PizzaMutation {
   price: string;
   image: string;
 }
+
+export interface UpdatePizza {
+  id: string;
+  pizza: PizzaApi;
+}
