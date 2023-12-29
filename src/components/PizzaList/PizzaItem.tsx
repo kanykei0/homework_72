@@ -2,6 +2,8 @@ import React from "react";
 import { PizzaProps } from "../../types";
 import ButtonSpinner from "../Spinners/ButtonSpinner";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../app/hooks";
+import { addPizza } from "../../store/cartSlice";
 
 interface Props {
   pizza: PizzaProps;
@@ -16,8 +18,10 @@ const PizzaItem: React.FC<Props> = ({
   onDelete,
   isAdmin,
 }) => {
-  const onCardClick = () => {
-    console.log("click ", pizza.id);
+  const dispatch = useAppDispatch();
+
+  const onCardClick = async () => {
+    dispatch(addPizza(pizza));
   };
 
   const card = (

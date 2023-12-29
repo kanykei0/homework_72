@@ -1,10 +1,14 @@
+import OrderTab from "../../components/Order/OrderTab";
 import Pizzas from "../../components/PizzaList/Pizzas";
 
 const Home = () => {
   return (
-    <div className="mt-5">
-      <Pizzas />
-    </div>
+    <>
+      <div className="container mt-5">
+        <Pizzas />
+      </div>
+      <OrderTab />
+    </>
   );
 };
 

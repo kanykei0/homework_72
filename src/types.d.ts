@@ -21,3 +21,12 @@ export interface UpdatePizza {
 export interface PizzaList {
   [id: string]: PizzaApi;
 }
+
+export interface CartPizza {
+  [id: string]: number;
+}
+
+export interface Cart {
+  dish: Dish;
+  amount: number;
+}
