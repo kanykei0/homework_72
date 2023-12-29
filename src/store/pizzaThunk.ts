@@ -53,3 +53,10 @@ export const fetchAllPizza = createAsyncThunk<
 
   return newPizza;
 });
+
+export const deletePizza = createAsyncThunk<void, string>(
+  "pizza/delete",
+  async (id: string) => {
+    await axiosApi.delete(`pizza/${id}.json`);
+  }
+);
