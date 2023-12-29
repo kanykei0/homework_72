@@ -30,6 +30,11 @@ export const cartSlice = createSlice({
         });
       }
     },
+    deleteCartPizza: (state, { payload: dish }: PayloadAction<PizzaProps>) => {
+      state.cartDishes = state.cartDishes.filter((cartDish) => {
+        return cartDish.dish.id !== dish.id;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(orderPizza.pending, (state) => {
@@ -46,5 +51,5 @@ export const cartSlice = createSlice({
 
 export const cartReducer = cartSlice.reducer;
 
-export const { addPizza } = cartSlice.actions;
+export const { addPizza, deleteCartPizza } = cartSlice.actions;
 export const selectCartPizza = (state: RootState) => state.cart.cartDishes;

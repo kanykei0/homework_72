@@ -12,11 +12,6 @@ const Toolbar: React.FC = () => {
               Home
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink to="/new-pizza" className="nav-link">
-              New pizza
-            </NavLink>
-          </li>
         </ul>
       </div>
     </nav>
