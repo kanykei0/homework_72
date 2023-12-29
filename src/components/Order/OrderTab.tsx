@@ -3,8 +3,10 @@ import { useAppSelector } from "../../app/hooks";
 import { selectCartPizza } from "../../store/cartSlice";
 import { Modal } from "react-bootstrap";
 import Checkout from "../../containers/Checkout/Checkout";
+import { useNavigate } from "react-router-dom";
 
 const OrderTab = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const cartDishes = useAppSelector(selectCartPizza);
   const total = cartDishes.reduce((sum, cartDish) => {
@@ -38,7 +40,12 @@ const OrderTab = () => {
             >
               Cancel
             </button>
-            <button className="btn btn-success checkout_button">Order</button>
+            <button
+              className="btn btn-success checkout_button"
+              onClick={() => navigate("/order")}
+            >
+              Order
+            </button>
           </div>
         </div>
       </Modal>

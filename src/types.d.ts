@@ -30,3 +30,14 @@ export interface Cart {
   dish: Dish;
   amount: number;
 }
+
+export interface Customer {
+  name: string;
+  address: string;
+  phone: string;
+}
+
+export interface ApiOrder {
+  customer: Customer;
+  dishes: CartPizza;
+}

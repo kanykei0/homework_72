@@ -1,19 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { DELIVERY_PRICE } from "../../constants";
 import { deleteCartPizza, selectCartPizza } from "../../store/cartSlice";
-import { useEffect } from "react";
 
 const Checkout = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const cartDishes = useAppSelector(selectCartPizza);
-
-  useEffect(() => {
-    if (cartDishes.length === 0) {
-      navigate("/");
-    }
-  }, [cartDishes]);
 
   return (
     <div>
