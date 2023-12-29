@@ -1,8 +1,10 @@
+import Pizzas from "../../components/PizzaList/Pizzas";
+
 const Home = () => {
   return (
-    <>
-      <h1>Home</h1>
-    </>
+    <div className="mt-5">
+      <Pizzas />
+    </div>
   );
 };
 

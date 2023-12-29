@@ -5,3 +5,7 @@
 .pizza-image {
   width: 150px;
 }
+
+.cur-point {
+  cursor: pointer;
+}

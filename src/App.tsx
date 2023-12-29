@@ -10,7 +10,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin/dishes" element={<Pizzas />} />
+        <Route path="/admin/dishes" element={<Pizzas isAdmin />} />
         <Route path="/new-pizza" element={<NewPizza />} />
         <Route path="/edit-pizza/:id" element={<EditPizza />} />
         <Route path="*" element={<h1>Not Found!</h1>} />

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   selectAllPizza,
@@ -9,7 +9,11 @@ import { deletePizza, fetchAllPizza } from "../../store/pizzaThunk";
 import { Spinner } from "react-bootstrap";
 import PizzaItem from "./PizzaItem";
 
-const Pizzas = () => {
+interface Props {
+  isAdmin?: boolean;
+}
+
+const Pizzas: React.FC<Props> = ({ isAdmin }) => {
   const dispatch = useAppDispatch();
   const pizzaList = useAppSelector(selectAllPizza);
   const pizzasLoading = useAppSelector(selectFetchAllPizzaLoading);
@@ -37,6 +41,7 @@ const Pizzas = () => {
               pizza={pizza}
               deleteLoading={deleteLoading}
               onDelete={() => removePizza(pizza.id)}
+              isAdmin={isAdmin}
             />
           ))
         )}
