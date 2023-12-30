@@ -1,16 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Cart, PizzaProps } from "../types";
-import { orderPizza } from "./cartThunk";
+import { Cart, OrdersApi, PizzaProps } from "../types";
 import { RootState } from "../app/store";
 
 interface CartState {
   cartDishes: Cart[];
+  orders: OrdersApi[];
   addToCartLoading: boolean;
+  ordersLoading: boolean;
 }
 
 const initialState: CartState = {
   cartDishes: [],
+  orders: [],
   addToCartLoading: false,
+  ordersLoading: false,
 };
 
 export const cartSlice = createSlice({
@@ -39,20 +42,14 @@ export const cartSlice = createSlice({
       state.cartDishes = [];
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(orderPizza.pending, (state) => {
-      state.addToCartLoading = true;
-    });
-    builder.addCase(orderPizza.fulfilled, (state) => {
-      state.addToCartLoading = false;
-    });
-    builder.addCase(orderPizza.rejected, (state) => {
-      state.addToCartLoading = false;
-    });
-  },
+  extraReducers: (builder) => {},
 });
 
 export const cartReducer = cartSlice.reducer;
 
 export const { addPizza, deleteCartPizza, clearCart } = cartSlice.actions;
 export const selectCartPizza = (state: RootState) => state.cart.cartDishes;
+
+export const selectOrders = (state: RootState) => state.cart.orders;
+export const selectOrdersLoading = (state: RootState) =>
+  state.cart.ordersLoading;

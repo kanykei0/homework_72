@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { clearCart, selectCartPizza } from "../../store/cartSlice";
 import { ApiOrder, CartPizza, Customer } from "../../types";
 import axiosApi from "../../axiosApi";
@@ -10,7 +10,13 @@ const Order: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const cartDishes = useAppSelector(selectCartPizza);
-  console.log(cartDishes);
+
+  useEffect(() => {
+    if (cartDishes.length === 0) {
+      navigate("/");
+    }
+  }, [cartDishes]);
+
   const [customer, setCustomer] = useState<Customer>({
     name: "",
     address: "",

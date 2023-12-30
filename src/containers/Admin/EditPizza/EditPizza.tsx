@@ -10,6 +10,7 @@ import { fetchOnePizza, updatePizza } from "../../../store/pizzaThunk";
 import { PizzaApi } from "../../../types";
 import { Spinner } from "react-bootstrap";
 import PizzaForm from "../../../components/PizzaForm/PizzaForm";
+import AdminToolbar from "../../../components/Toolbar/AdminToolbar";
 
 const EditPizza = () => {
   const { id } = useParams() as { id: string };
@@ -51,7 +52,12 @@ const EditPizza = () => {
       formSection = <h4>Not found</h4>;
     }
   }
-  return <>{formSection}</>;
+  return (
+    <>
+      <AdminToolbar />
+      {formSection}
+    </>
+  );
 };
 
 export default EditPizza;

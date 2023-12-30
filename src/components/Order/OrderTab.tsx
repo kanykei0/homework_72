@@ -20,6 +20,7 @@ const OrderTab = () => {
           <h6 className="m-0">Order total: {total} KGS</h6>
           <button
             className="btn btn-dark px-5"
+            disabled={cartDishes.length === 0 ? true : false}
             onClick={() => setShowModal(true)}
           >
             Checkout

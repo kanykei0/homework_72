@@ -1,10 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosApi from "../axiosApi";
-import { CartPizza } from "../types";
+import { PizzaApi } from "../types";
 
-export const orderPizza = createAsyncThunk<void, CartPizza>(
-  "cart/add",
-  async (cartPizza) => {
-    await axiosApi.post("pizzaCart.json", cartPizza);
+export const fetchOneOrderPizza = createAsyncThunk<PizzaApi, string>(
+  "pizza/fetchPizza",
+  async (id) => {
+    const response = await axiosApi.get<PizzaApi | null>(`pizza/${id}.json`);
+    const pizza = response.data;
+
+    if (pizza === null) {
+      throw new Error("Not Found");
+    }
+
+    return pizza;
   }
 );

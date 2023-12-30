@@ -4,6 +4,7 @@ import { selectCreateLoading } from "../../../store/pizzaSlice";
 import { PizzaApi } from "../../../types";
 import { createPizza } from "../../../store/pizzaThunk";
 import PizzaForm from "../../../components/PizzaForm/PizzaForm";
+import AdminToolbar from "../../../components/Toolbar/AdminToolbar";
 
 const NewPizza = () => {
   const navigate = useNavigate();
@@ -15,7 +16,12 @@ const NewPizza = () => {
     navigate("/");
   };
 
-  return <PizzaForm onSubmit={onSubmit} isLoading={createPizzaLoading} />;
+  return (
+    <>
+      <AdminToolbar />
+      <PizzaForm onSubmit={onSubmit} isLoading={createPizzaLoading} />
+    </>
+  );
 };
 
 export default NewPizza;

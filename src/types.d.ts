@@ -41,3 +41,24 @@ export interface ApiOrder {
   customer: Customer;
   dishes: CartPizza;
 }
+
+export interface Order extends ApiOrder {
+  id: string;
+  totalPrice: number;
+}
+
+export interface OrderData {
+  [id: string]: number;
+}
+
+export interface ApiOrders {
+  [id: string]: OrderData;
+}
+
+export interface OrdersApi {
+  [id: string]: Cart;
+}
+
+export interface ApiOrdersList {
+  [id: string]: ApiOrder;
+}
