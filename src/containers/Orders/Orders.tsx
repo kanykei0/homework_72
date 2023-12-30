@@ -49,7 +49,15 @@ const Orders = () => {
               Object.keys(orders).map((orderKey, index) => (
                 <div className="card mb-2" key={index}>
                   <div className="card-body">
-                    <strong>{orders[orderKey].customer.name}</strong>
+                    <strong className="d-block">
+                      Cutomer: {orders[orderKey].customer.name}
+                    </strong>
+                    <strong className="d-block">
+                      Phone: {orders[orderKey].customer.phone}
+                    </strong>
+                    <strong className="d-block">
+                      Address: {orders[orderKey].customer.address}
+                    </strong>
                     {Object.keys(orders[orderKey]?.dishes).map((dishKey) => (
                       <div key={dishKey}>
                         <span> ordered </span>
