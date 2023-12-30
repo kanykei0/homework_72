@@ -52,13 +52,9 @@ export interface OrderData {
 }
 
 export interface ApiOrders {
-  [id: string]: OrderData;
+  [id: string]: ApiOrder;
 }
 
 export interface OrdersApi {
   [id: string]: Cart;
-}
-
-export interface ApiOrdersList {
-  [id: string]: ApiOrder;
 }

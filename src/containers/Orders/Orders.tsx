@@ -29,7 +29,6 @@ const Orders = () => {
   const removeOrder = async (id: string) => {
     await dispatch(completeOrder(id));
     await dispatch(fetchAllPizza());
-    window.location.reload();
   };
 
   useEffect(() => {

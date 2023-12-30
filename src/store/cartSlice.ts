@@ -42,7 +42,6 @@ export const cartSlice = createSlice({
       state.cartDishes = [];
     },
   },
-  extraReducers: (builder) => {},
 });
 
 export const cartReducer = cartSlice.reducer;
