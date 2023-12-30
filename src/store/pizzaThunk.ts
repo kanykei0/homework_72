@@ -60,3 +60,10 @@ export const deletePizza = createAsyncThunk<void, string>(
     await axiosApi.delete(`pizza/${id}.json`);
   }
 );
+
+export const completeOrder = createAsyncThunk<void, string>(
+  "order/complete",
+  async (id: string) => {
+    await axiosApi.delete(`orders/${id}.json`);
+  }
+);

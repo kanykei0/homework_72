@@ -3,10 +3,13 @@ import { ApiOrders } from "../../types";
 import axiosApi from "../../axiosApi";
 import { Spinner } from "react-bootstrap";
 import AdminToolbar from "../../components/Toolbar/AdminToolbar";
+import { useAppDispatch } from "../../app/hooks";
+import { completeOrder, fetchAllPizza } from "../../store/pizzaThunk";
 
 const Orders = () => {
   const [orders, setOrders] = useState<ApiOrders | null>(null);
   const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
 
   const fetchOrders = useCallback(async () => {
     try {
@@ -23,9 +26,15 @@ const Orders = () => {
     }
   }, []);
 
+  const removeOrder = async (id: string) => {
+    await dispatch(completeOrder(id));
+    await dispatch(fetchAllPizza());
+    window.location.reload();
+  };
+
   useEffect(() => {
     void fetchOrders();
-  }, [fetchOrders]);
+  }, [fetchOrders, dispatch]);
 
   return (
     <>
@@ -45,9 +54,10 @@ const Orders = () => {
                     {Object.keys(orders[orderKey]?.dishes).map((dishKey) => (
                       <div key={dishKey}>
                         <span> ordered </span>
-                        <strong> {dishKey}</strong>
+                        <strong>{dishKey}</strong>
                       </div>
                     ))}
+                    <a onClick={() => removeOrder(orderKey)}>Complete order</a>
                   </div>
                 </div>
               ))
