@@ -13,13 +13,15 @@ const NewPizza = () => {
 
   const onSubmit = async (pizza: PizzaApi) => {
     await dispatch(createPizza(pizza));
-    navigate("/");
+    navigate("/admin");
   };
 
   return (
     <>
       <AdminToolbar />
-      <PizzaForm onSubmit={onSubmit} isLoading={createPizzaLoading} />
+      <div className="container">
+        <PizzaForm onSubmit={onSubmit} isLoading={createPizzaLoading} />
+      </div>
     </>
   );
 };

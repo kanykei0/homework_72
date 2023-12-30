@@ -5,6 +5,7 @@ import { clearCart, selectCartPizza } from "../../store/cartSlice";
 import { ApiOrder, CartPizza, Customer } from "../../types";
 import axiosApi from "../../axiosApi";
 import { Spinner } from "react-bootstrap";
+import Toolbar from "../../components/Toolbar/Toolbar";
 
 const Order: React.FC = () => {
   const navigate = useNavigate();
@@ -61,49 +62,52 @@ const Order: React.FC = () => {
   };
 
   let form = (
-    <div className="container">
-      <form onSubmit={onFormSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Client name</label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            required
-            className="form-control"
-            value={customer.name}
-            onChange={customerChanged}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="address">Address</label>
-          <input
-            id="address"
-            type="text"
-            name="address"
-            required
-            className="form-control"
-            value={customer.address}
-            onChange={customerChanged}
-          />
-        </div>
-        <div className="form-group mb-3">
-          <label htmlFor="phone">Phone</label>
-          <input
-            id="phone"
-            type="text"
-            name="phone"
-            required
-            className="form-control"
-            value={customer.phone}
-            onChange={customerChanged}
-          />
-        </div>
-        <button disabled={loading} type="submit" className="btn btn-primary">
-          Place order
-        </button>
-      </form>
-    </div>
+    <>
+      <Toolbar />
+      <div className="container">
+        <form onSubmit={onFormSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Client name</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              required
+              className="form-control"
+              value={customer.name}
+              onChange={customerChanged}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address</label>
+            <input
+              id="address"
+              type="text"
+              name="address"
+              required
+              className="form-control"
+              value={customer.address}
+              onChange={customerChanged}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="phone">Phone</label>
+            <input
+              id="phone"
+              type="text"
+              name="phone"
+              required
+              className="form-control"
+              value={customer.phone}
+              onChange={customerChanged}
+            />
+          </div>
+          <button disabled={loading} type="submit" className="btn btn-primary">
+            Place order
+          </button>
+        </form>
+      </div>
+    </>
   );
 
   if (loading) {
@@ -111,7 +115,7 @@ const Order: React.FC = () => {
   }
 
   return (
-    <div className="row mt-2">
+    <div className="row">
       <div className="col">{form}</div>
     </div>
   );

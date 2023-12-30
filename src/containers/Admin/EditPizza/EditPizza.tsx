@@ -26,7 +26,7 @@ const EditPizza = () => {
 
   const onSubmit = async (pizza: PizzaApi) => {
     await dispatch(updatePizza({ id, pizza }));
-    navigate("/");
+    navigate("/admin");
   };
 
   const existingPizza = pizza

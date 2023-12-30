@@ -6,6 +6,10 @@ body {
   height: 100vh;
 }
 
+.content_pizza {
+  height: 100%;
+}
+
 .preview-image {
   width: 200px;
 }

@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <Toolbar />
-      <div className="container mt-5">
+      <div className="content_pizza container mt-5">
         <Pizzas />
       </div>
       <OrderTab />

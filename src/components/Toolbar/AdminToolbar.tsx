@@ -12,6 +12,11 @@ const AdminToolbar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
+            <NavLink to="/admin/new-pizza" className="nav-link">
+              New pizza
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to="/admin/orders" className="nav-link">
               Orders
             </NavLink>

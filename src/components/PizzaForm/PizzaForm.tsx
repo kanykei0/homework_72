@@ -107,7 +107,7 @@ const PizzaForm: React.FC<Props> = ({
           {isEdit ? "Update" : "Create"}
         </button>
         {!isLoading && (
-          <Link to="/" className="btn btn-primary">
+          <Link to="/admin" className="btn btn-primary">
             Back
           </Link>
         )}
